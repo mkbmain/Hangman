@@ -13,7 +13,6 @@ namespace Hangman
         private static Random _random = new Random(Guid.NewGuid().GetHashCode());
 
         private static readonly Dictionary<char, bool> AllowedLetters = "abcdefghijklmnopqrstuvwxyz"
-            .ToCharArray()
             .ToDictionary(f => f, f => true);
 
         private static void Main()
