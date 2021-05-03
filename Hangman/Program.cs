@@ -75,7 +75,7 @@ namespace Hangman
 
         static char GetGuessFromUser(List<char> previous)
         {
-            Console.Write("Make a guess:");
+            Console.Write("Guess a letter:");
             var read = Console.ReadLine()?.ToLower();
            
             if (string.IsNullOrWhiteSpace(read) ||
