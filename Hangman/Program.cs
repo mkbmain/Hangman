@@ -8,6 +8,7 @@ namespace Hangman
     class Program
     {
         private static int score = 0;
+        public const int MaxLife = 7;
         private static string[] _words;
         private static Random _random = new Random(Guid.NewGuid().GetHashCode());
 
@@ -28,7 +29,7 @@ namespace Hangman
             var word = _words[_random.Next(0, _words.Length)].ToLower();
             var characters = word.ToCharArray().Select(f => '_').ToArray();
 
-            int life = 5;
+            int life = MaxLife;
             var previous = new List<char>();
             while (true)
             {
