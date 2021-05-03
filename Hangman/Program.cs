@@ -76,22 +76,18 @@ namespace Hangman
         static char GetGuessFromUser(List<char> previous)
         {
             Console.Write("Make a guess:");
-            var read = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(read) || read.Length > 1 ||
-                !AllowedLetters.ContainsKey(read.ToLower().First()))
+            var read = Console.ReadLine()?.ToLower();
+           
+            if (string.IsNullOrWhiteSpace(read) ||
+                read.Length > 1 ||
+                !AllowedLetters.ContainsKey(read[0]) ||
+                previous.Contains(read[0]))
             {
-                Console.WriteLine("only 1 letter at a time");
+                Console.WriteLine("Please Enter 1 Letter that has not been already entered:");
                 return GetGuessFromUser(previous);
             }
-
-            char c = read.ToLower().First();
-            if (previous.Contains(c))
-            {
-                Console.WriteLine("already Guessed have another go");
-                return GetGuessFromUser(previous);
-            }
-
-            return c;
+            
+            return read[0];
         }
     }
 }
