@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System.Net;
 
 namespace Hangman
 {
@@ -18,14 +19,15 @@ namespace Hangman
         private static void Main()
         {
             _words = File.ReadAllLines(Path.Join(Environment.CurrentDirectory, "words.txt"))
-                .Where(f => !f.Contains(".") && !f.Contains("'")).ToArray();
+                .Select(f=> f.ToLower())
+                .Where(f => f.All(f=> AllowedLetters.ContainsKey(f))).ToArray();
             Game();
         }
 
 
         static void Game()
         {
-            var word = _words[_random.Next(0, _words.Length)].ToLower();
+            var word = _words[_random.Next(0, _words.Length)];
             var characters = word.ToCharArray().Select(f => '_').ToArray();
 
             int life = MaxLife;
