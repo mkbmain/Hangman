@@ -24,7 +24,7 @@ namespace Hangman
                 Game();
                 Console.Write("Play again? (Y/N):");
                 var playAgain = Console.ReadLine();
-                if (playAgain.ToLower().StartsWith("n"))
+                if (playAgain?.ToLower().StartsWith("n") ?? false)
                 {
                     return;
                 }
