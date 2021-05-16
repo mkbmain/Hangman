@@ -18,7 +18,7 @@ namespace Hangman
         private static void Main()
         {
             _words = File.ReadAllLines(Path.Join(Environment.CurrentDirectory, "words.txt")).Select(f => f.ToLower())
-                .Where(f => f.All(f => AllowedLetters.ContainsKey(f))).ToArray();
+                .Where(f => f.All(c => AllowedLetters.ContainsKey(c))).ToArray();
             while (true)
             {
                 Game();
